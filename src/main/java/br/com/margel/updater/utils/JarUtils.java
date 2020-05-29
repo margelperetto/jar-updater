@@ -13,7 +13,8 @@ public final class JarUtils {
 	public static boolean isDevEnv() {
 		LOGGER.debug("Checking environment type...");
 		File jarFile = getJarFile();
-		return jarFile==null || jarFile.isDirectory();
+		return jarFile==null || jarFile.isDirectory() || 
+				jarFile.getAbsolutePath().contains(File.separator+"jar-updater"+File.separator);
 	}
 
 	public static File getJarFile() {
