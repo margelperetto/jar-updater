@@ -17,7 +17,11 @@ class StepClearTempFiles extends UpdaterStep{
 		try {
 			tempFolder = updater.getConfig().getTempDownloadFolderPath();
 			LOGGER.debug("Clear temp files -> "+tempFolder);
-			for(File f : new File(tempFolder).listFiles()) {
+			File[] tempFiles = new File(tempFolder).listFiles();
+			if(tempFiles==null) {
+				return;
+			}
+			for(File f : tempFiles) {
 				Files.delete(f.toPath());
 				LOGGER.debug("Delete -> "+f);
 			}
